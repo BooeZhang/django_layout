@@ -7,10 +7,9 @@ from apps.user.models import UserModel
 
 
 @admin.register(UserModel)
-class ClassificationAdmin(admin.ModelAdmin):
-    """
-    导航分类管理
-    """
-    list_display = ['user_name']
-    exclude = ['create_at', 'delete_at']
+class UserAdmin(admin.ModelAdmin):
+    """用户管理"""
+
+    list_display = ["user_name", "header_img", "is_super", "is_active", "create_at"]
+    exclude = ["delete_at"]
     list_per_page = 10

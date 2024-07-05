@@ -14,25 +14,30 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
 from django.contrib import admin
 from django.urls import path, include
 from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
 from rest_framework import permissions
+from rest_framework.authentication import TokenAuthentication
+from rest_framework_simplejwt.authentication import JWTAuthentication
 
+from apps.common.views import Login
 from setting import settings
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('user/', include('apps.user.urls')),
-    path('ws', include('apps.ws.urls'))
+    path("admin/", admin.site.urls),
+    path("login", Login.as_view(), name="login"),
+    path("user/", include("apps.user.urls")),
+    path("ws", include("apps.ws.urls")),
 ]
 
 if settings.DEBUG:
     schema_view = get_schema_view(
         openapi.Info(
             title="Snippets API",
-            default_version='v1',
+            default_version="v1",
             description="Test description",
             terms_of_service="https://www.google.com/policies/terms/",
             contact=openapi.Contact(email="contact@snippets.local"),
@@ -40,7 +45,12 @@ if settings.DEBUG:
         ),
         public=True,
         permission_classes=[permissions.AllowAny],
+        authentication_classes=[JWTAuthentication],
     )
     urlpatterns += [
-        path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+        path(
+            "swagger/",
+            schema_view.with_ui("swagger", cache_timeout=0),
+            name="schema-swagger-ui",
+        ),
     ]

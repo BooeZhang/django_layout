@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.contrib.auth.hashers import make_password
 from django.db import models
+from django.contrib.auth.models import User
 
 from apps.common.models import BaseModel
 
@@ -45,3 +46,11 @@ class UserModel(BaseModel):
     def save(self, *args, **kwargs):
         self.password = make_password(self.password, settings.PWD_SALT, "pbkdf2_sha256")
         super(UserModel, self).save(*args, **kwargs)
+
+    @property
+    def is_authenticated(self):
+        """
+        Always return True. This is a way to tell if the user has been
+        authenticated in templates.
+        """
+        return True

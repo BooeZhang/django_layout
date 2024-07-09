@@ -20,8 +20,6 @@ from django.urls import path, include
 from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
 from rest_framework import permissions
-from rest_framework.authentication import TokenAuthentication
-from rest_framework_simplejwt.authentication import JWTAuthentication
 
 from apps.common.views import Login
 from setting import settings
@@ -45,7 +43,6 @@ if settings.DEBUG:
         ),
         public=True,
         permission_classes=[permissions.AllowAny],
-        authentication_classes=[JWTAuthentication],
     )
     urlpatterns += [
         path(

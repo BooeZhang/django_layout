@@ -173,7 +173,6 @@ SWAGGER_SETTINGS = {
     "SECURITY_DEFINITIONS": {
         "Bearer": {"type": "apiKey", "in": "header", "name": "Authorization"}
     },
-    "LOGIN_URL": "login",
 }
 
 # 上传文件配置

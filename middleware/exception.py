@@ -1,11 +1,10 @@
 from django.conf import settings
 from rest_framework import status
-from rest_framework.exceptions import APIException, ValidationError, ErrorDetail
-from rest_framework.request import Request
+from rest_framework.exceptions import ValidationError
 from rest_framework.views import exception_handler, Response
 from loguru import logger as log
 
-from apps.common.exception import CommonException
+from apps.common.exception import CommonExceptionMixin
 
 
 def custom_exception_handler(exc, context):
@@ -21,7 +20,7 @@ def custom_exception_handler(exc, context):
             {"msg": "参数错误", "code": code}, status=http_status, exception=True
         )
 
-    if isinstance(exc, CommonException):
+    elif isinstance(exc, CommonExceptionMixin):
         code = exc.get_codes()
         msg = exc.detail
         http_status = status.HTTP_200_OK

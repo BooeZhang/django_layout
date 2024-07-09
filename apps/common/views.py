@@ -20,6 +20,8 @@ class Login(APIView):
     登录
     """
 
+    authentication_classes = ()
+
     @swagger_auto_schema(
         operation_description="登录",
         request_body=LoginSerializer,

@@ -18,7 +18,7 @@ from middleware.authentication.authentication import Authentication
 class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
     queryset = UserModel.objects.all()
-    authentication_classes = (JWTAuthentication,)
+    authentication_classes = (Authentication,)
     permission_classes = (IsAuthenticated,)
     # def list(self, request):
     #     queryset = UserModel.objects.all()

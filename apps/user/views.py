@@ -1,3 +1,4 @@
+from django.http import Http404
 from django.shortcuts import get_object_or_404
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework import viewsets
@@ -20,11 +21,12 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = UserModel.objects.all()
     authentication_classes = (Authentication,)
     permission_classes = (IsAuthenticated,)
-    # def list(self, request):
-    #     queryset = UserModel.objects.all()
-    #     serializer = UserSerializer(queryset, many=True)
-    #     return Response(serializer.data)
-    #
+
+    def list(self, request):
+        queryset = UserModel.objects.all()
+        serializer = UserSerializer(queryset, many=True)
+        return Response(serializer.data)
+
     # def retrieve(self, request, pk=None):
     #     queryset = UserModel.objects.filter(id=pk)
     #     user = get_object_or_404(queryset, pk=pk)

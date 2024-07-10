@@ -13,11 +13,9 @@ class UserModel(BaseModel):
     """
 
     user_name = models.CharField(
-        null=True, max_length=50, help_text="用户名", verbose_name="用户名"
+        max_length=50, unique=True, help_text="用户名", verbose_name="用户名"
     )
-    password = models.CharField(
-        null=True, max_length=255, help_text="密码", verbose_name="密码"
-    )
+    password = models.CharField(max_length=255, help_text="密码", verbose_name="密码")
     remark = models.CharField(
         blank=True, max_length=255, help_text="备注", verbose_name="备注"
     )

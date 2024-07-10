@@ -1,4 +1,6 @@
 from django.conf import settings
+from django.core.exceptions import ObjectDoesNotExist
+from django.http import Http404
 from rest_framework import status
 from rest_framework.exceptions import ValidationError
 from rest_framework.views import exception_handler, Response
@@ -25,6 +27,14 @@ def custom_exception_handler(exc, context):
         msg = exc.detail
         http_status = status.HTTP_200_OK
         return Response({"msg": msg, "code": code}, status=http_status, exception=True)
+    elif isinstance(exc, ObjectDoesNotExist):
+        return Response(
+            {"msg": "success", "code": 200}, status=status.HTTP_200_OK, exception=True
+        )
+    elif isinstance(exc, Http404):
+        return Response(
+            {"msg": "success", "code": 200}, status=status.HTTP_200_OK, exception=True
+        )
     elif response is None:
         msg = str(exc)
         if not settings.DEBUG:

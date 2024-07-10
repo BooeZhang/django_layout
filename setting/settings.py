@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "drf_yasg",
     "rest_framework_simplejwt",
+    "channels_auth_token_middlewares",
     "apps.common",
     "apps.user",
     "apps.ws",

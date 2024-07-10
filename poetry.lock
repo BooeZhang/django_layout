@@ -275,6 +275,25 @@ url = "https://mirrors.aliyun.com/pypi/simple"
 reference = "aliyun"
 
 [[package]]
+name = "channels-auth-token-middlewares"
+version = "1.1.0"
+description = "Django Channels auth token middlewares"
+optional = false
+python-versions = ">=3.6"
+files = [
+    {file = "channels_auth_token_middlewares-1.1.0-py3-none-any.whl", hash = "sha256:4f0359d906b6acd56d97f508793f3aff89b09d5574f9f4865ac310af6160adb2"},
+    {file = "channels_auth_token_middlewares-1.1.0.tar.gz", hash = "sha256:6dd6103b24674df721f2e2e279f2dec9de59bf14d7db92e8065e8f53b3e990a7"},
+]
+
+[package.dependencies]
+channels = ">=3"
+
+[package.source]
+type = "legacy"
+url = "https://mirrors.aliyun.com/pypi/simple"
+reference = "aliyun"
+
+[[package]]
 name = "channels-redis"
 version = "4.2.0"
 description = "Redis-backed ASGI channel layer implementation"
@@ -1827,4 +1846,4 @@ reference = "aliyun"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "cd09a929e5e4ccffdca364190eef94654a74dfec34d9693704cfd0b3a2e3b12e"
+content-hash = "66ac268d7dd502247b55b7cc81dbaefdb19ff3dc5905dc2e9377a21937760009"
